@@ -5,12 +5,13 @@ import ProductItem from "./ProductItem";
 
 export default function Products() {
     const { state} = useProducts();
-    const {error,isLoading, products} = state;
+    const { error, isLoading, products } = state;
+    
     return (
     <>
         {error && <ErrorMsg/> }
         {isLoading ? <Loader/> : <ul>
-                {products.map((product) => <li key={product.id}>
+                {products.map((product) => <li key = {product.id}>
                     <ProductItem productInfo={product}/>
                 </li>)}
         </ul>}

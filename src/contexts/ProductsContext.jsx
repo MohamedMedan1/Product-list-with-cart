@@ -79,7 +79,8 @@ function ProductsProvider({children}) {
     }, []);
         
     function handleBuyProduct(product) {
-        dispatch({type:"saveProductInCart",payload:product});
+        console.log(product);
+        dispatch({ type: "saveProductInCart", payload: product });
         dispatch({type:"setProductAsSelected",payload:product.id});
     }
         
