@@ -53,10 +53,10 @@ function ProductsProvider({children}) {
         async function getProducts() {
         try {
             dispatch({ type: "productsLoading" });
-                const res = await fetch("http://localhost:9000/items");
+                const res = await fetch("http://localhost:3000/items");
                 const data = await res.json();
-                if (data.length === 0) throw new Error("Something went wrong while request");
-                const updatedProduct = data.map(product => ({...product,isSelected:false}));   
+                if (data.length === 0) throw new Error("Something went wrong while request");;    
+                const updatedProduct = data.map(product => ({ ...product, isSelected: false }));   
                 dispatch({type:"setProducts",payload: updatedProduct}); 
             }
             catch (error){

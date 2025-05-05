@@ -6,7 +6,7 @@ import ProductItem from "./ProductItem";
 export default function Products() {
     const { state} = useProducts();
     const { error, isLoading, products } = state;
-    
+    console.log(products);
     return (
     <>
         {error && <ErrorMsg/> }
