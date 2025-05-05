@@ -27,7 +27,7 @@ export default function ProductItem({productInfo}) {
     return (
         <div>
             <div className="product-img-box">
-                <img src={screenWidth >= 767 ? image.desktop : image.mobile} alt="food-img" />
+                <img src={screenWidth >= 767 ? image.desktop : image.mobile} alt={name} />
                 {productInfo.isSelected
                     ?
                     <Button className="add-product">
