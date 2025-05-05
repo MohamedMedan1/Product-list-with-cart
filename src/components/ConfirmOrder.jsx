@@ -1,9 +1,13 @@
 import CartProductItem from "./CartProductItem";
 import OrderTotal from "./OrderTotal";
 import Button from "./Button"
+import { formatPrice } from "../utils/formatPrice";
+import { useProducts } from "../hooks/useProducts";
 
-export default function ConfirmOrder({ purchasedProducts ,handleStartNewOrder}){
-    const fullPriceOfCart = purchasedProducts.reduce((acc,product)=>  (acc + product.price * product.quantity),0)
+export default function ConfirmOrder() {
+    const { state, handleStartNewOrder } = useProducts();
+    const { purchasedProducts } = state;
+
     return (
         <div className="confirm-box">
             <div className="confirm-icon">
@@ -29,17 +33,17 @@ export default function ConfirmOrder({ purchasedProducts ,handleStartNewOrder}){
                             </div>
                             <div className="confirmedProduct-details">
                                 <p className="quantity">{quantity}x</p>
-                                <p>${Number.isInteger(price)? `${price}.00`: `${price}0`}</p>
+                                <p>${formatPrice(price)}</p>
                             </div>
                         </div>
                         </div>
                         <div className="confirmedProduct-fullPrice">
-                            <p>${Number.isInteger(price * quantity) ? `${price * quantity}.00`:`${price * quantity}0`}</p>
+                            <p>${formatPrice(price * quantity)}</p>
                         </div>
                     </CartProductItem>
                 </li>)}
             </ul>
-            <OrderTotal sumOfCart={fullPriceOfCart}/>
+            <OrderTotal/>
             <Button className="confirm-Btn" onClickHandler={handleStartNewOrder}>
                 <p>Start new order</p>
             </Button>

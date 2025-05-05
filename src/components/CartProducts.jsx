@@ -1,18 +1,23 @@
 import CartProductItem from "./CartProductItem"
+import { formatPrice } from "../utils/formatPrice"
+import { useProducts } from "../hooks/useProducts"
 
-export default function CartProducts({savedProducts,handleRemoveProduct}) {
+export default function CartProducts() {
+    const {state, handleRemoveProduct } = useProducts();
+    const { purchasedProducts: savedProducts } = state;
+    
     return (
         <ul className="cart-products-box">
-            {savedProducts.map((product) => <li key={product.id}>
+            {savedProducts.map(({id,name,price,quantity}) => <li key={id}>
                 <CartProductItem>
                     <div className="cart-product-content">
-                            <p>{product.name}</p>
+                            <p>{name}</p>
                         <div className="product-description">
-                            <span>{product.quantity}x</span>
-                            <span>${Number.isInteger(product.price) ? `${product.price}.00`: `${product.price}0`} = ${product.price * product.quantity}</span>
+                            <span>{quantity}x</span>
+                            <span>${formatPrice(price)} = ${formatPrice(price * quantity)}</span>
                         </div>
                     </div>
-                    <div className="cart-product-btn" onClick={() => handleRemoveProduct(product.id)}>
+                    <div className="cart-product-btn" onClick={() => handleRemoveProduct(id)}>
                         <button>✖</button>
                     </div>
                 </CartProductItem>

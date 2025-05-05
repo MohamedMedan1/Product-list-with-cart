@@ -1,17 +1,17 @@
+import { useProducts } from "../hooks/useProducts";
 import ErrorMsg from "./ErrorMsg";
 import Loader from "./Loader";
 import ProductItem from "./ProductItem";
 
-export default function Products({ state,handleBuyProduct,handleQuantityIncreament,handleQuantityDecreament,handleRemoveProduct}) {
-    const {products,screenWidth,error, isLoading} = state;
+export default function Products() {
+    const { state} = useProducts();
+    const { error, isLoading, products} = state;
     return (
     <>
         {error && <ErrorMsg/> }
         {isLoading ? <Loader/> : <ul>
                 {products.map((product) => <li key={product.id}>
-                    <ProductItem productInfo={product} screenWidth={screenWidth} 
-                        handleBuyProduct={handleBuyProduct} handleQuantityIncreament={handleQuantityIncreament}
-                        handleQuantityDecreament={handleQuantityDecreament} handleRemoveProduct={handleRemoveProduct} />
+                    <ProductItem productInfo={product}/>
                 </li>)}
         </ul>}
     </>

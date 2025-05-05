@@ -21,11 +21,9 @@
 }
 ::-webkit-scrollbar{
   width: 10px;
+  background-color: var(--Rose-300);
 }
 ::-webkit-scrollbar-thumb{
-  background-color: var(--Red);
-}
-::-webkit-scrollbar-thumb {
   background-color: var(--Red);
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -73,10 +71,18 @@ body{
 }
 /* End Products Gallery Title */
 /* End Products Box */
-ul{
+ul,
+ul li .product-img-box button:not(.ctrl-btn),
+ul li .ctrl-btn{
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+}
+ul li .product-Info p,
+ul li .product-img-box button span{
+  font-weight: 600;
+}
+ul{
+  flex-wrap: wrap;
 }
 ul li,
 ul li .product-Info{
@@ -99,8 +105,6 @@ ul li .product-img-box button:not(.ctrl-btn){
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  align-items: center;
   justify-content: center;
   gap: 5px;
   border-radius: 20px;
@@ -126,14 +130,12 @@ ul li .product-img-box button:hover{
 }
 ul li .product-img-box button span{
   font-size: 16px;
-  font-weight: 600;
 }
 ul li .product-Info{
   gap: 5px;
 }
 ul li .product-Info p{
   color: var(--Rose-900);
-  font-weight: 600;
 }
 ul li .product-Info p:first-child{
   color: var(--Rose-300);
@@ -161,8 +163,6 @@ ul li img{
 ul li .ctrl-btn{
   width: 20px;
   height: 20px;
-  display: flex;
-  align-items: center;
   justify-content: center;
   border: 1px solid var(--Rose-50);
   background-color: transparent;
@@ -170,11 +170,30 @@ ul li .ctrl-btn{
   transition: 0.5s;
 }
 ul li .ctrl-btn:hover{
-  transform: scale(1.1);
+  transform: scale(1.2);
   background-color: var(--Green);
 }
 /* End Products Box */
 /* Start Cart Styling */
+.cart ::-webkit-scrollbar,
+.confirm-box ::-webkit-scrollbar{
+  width: 10px;
+  background-color: var(--Rose-300);
+  border-radius: 2px;
+}
+.cart ::-webkit-scrollbar-thumb,
+.confirm-box ::-webkit-scrollbar-thumb{
+  background-color: var(--Red);
+  border-radius: 4px;
+}
+.cart,
+.cart .cart-img-box,
+.cart .cart-products-box,
+.cart .cart-products-box li,
+.cart .cart-products-box li .cart-product-content .product-description{
+    display: flex;
+    flex-direction: column;
+}
 .cart{
   background-color: var(--Red);
   height: fit-content;
@@ -182,11 +201,9 @@ ul li .ctrl-btn:hover{
   max-height: 50%;
   background-color: #ffffff;
   border-radius: 12px;
-  display: flex;
-  flex-direction: column; 
   padding: 20px;
   position: relative;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 @media(max-width:767px){
   .cart{
@@ -203,8 +220,6 @@ ul li .ctrl-btn:hover{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
 }
@@ -214,24 +229,22 @@ ul li .ctrl-btn:hover{
 }
 .cart .cart-products-box{
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
   gap: 10px;
   align-items: flex-start;
   overflow: auto;
+}
+.cart .cart-products-box li,
+.cart .cart-products-box li .cart-product-content .product-description {
+  flex-direction: row;
+  align-items: center;
 }
 .cart .cart-products-box li{
   padding: 10px 0 20px 0;
   width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
 }
 .cart .cart-products-box li .cart-product-content .product-description {
-  display: flex;
-  align-items: center;
   gap: 20px;
 }
 .cart .cart-products-box li .cart-product-content .product-description span:first-child{
@@ -239,18 +252,14 @@ ul li .ctrl-btn:hover{
 }
 .cart .cart-products-box  li .cart-product-btn button{
   background-color: transparent;
-  border: none;
-  outline: none;
   border-radius: 50%;
   width: 25px;
   height: 25px;
-  cursor: pointer;
   border: 2px solid var(--Rose-300);
   color: var(--Rose-300);
   transition: 0.5s;
 }
 .cart .cart-products-box li .cart-product-btn button:hover{
-  color: var(--Rose-900);
   border-color: var(--Rose-900);
 }
 .cart .cart-products-box li::after{
@@ -314,6 +323,7 @@ ul li .ctrl-btn:hover{
   font-weight: 600;
   transition: 0.5s ease;
   font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .confirm-Btn:hover{
   background-color: var(--dark-Red);
@@ -358,7 +368,8 @@ ul li .ctrl-btn:hover{
 }
 /* End Loader Styling */
 /* Start Error Message Styling  && Loading Message*/
-.box .loading-content p,.error-message{
+.box .loading-content p
+,.error-message{
   font-weight: 700;
   font-size: 18px;
 }
@@ -370,6 +381,35 @@ ul li .ctrl-btn:hover{
 }
 /* End Error Message Styling */
 /* Start Confirm Order Box  Styling */
+.confirm-box,
+.confirm-box  .ordered-products li,
+.confirm-box  .ordered-products li .startOf-productBox,
+.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-desc,
+.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-details,
+.confirm-box .orderTotal-box{
+  display: flex;
+}
+.confirm-box  .ordered-products li .startOf-productBox,
+.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-details{
+  gap: 20px;
+}
+.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-details,
+.confirm-box  .ordered-products li .startOf-productBox .quantity,
+.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-name,
+.confirm-box .ordered-products li .confirmedProduct-fullPrice p,
+.confirm-box .orderTotal-box p:first-child{
+  font-weight: 600;
+}
+.confirm-box .ordered-products li .confirmedProduct-fullPrice p,
+.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-name,
+.confirm-box .orderTotal-box p:last-child {
+  color: var(--Rose-900);
+}
+.confirm-box .orderTotal-box,
+.confirm-box .ordered-products{
+  background-color: var(--Rose-50);
+  margin-bottom: 30px;
+}
 .confirm-box{
   position: absolute;
   top: 50%;
@@ -379,11 +419,10 @@ ul li .ctrl-btn:hover{
   width: 500px;
   background-color: #ffffff;
   border-radius: 12px;
-  display: flex;
   flex-direction: column; 
   padding: 30px;
   z-index: 1000;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 @media(max-width:767px){
   .confirm-box{
@@ -414,13 +453,11 @@ ul li .ctrl-btn:hover{
 .confirm-box .ordered-products{
   background-color: var(--Rose-50);
   border-radius: 6px;
-  margin-bottom: 30px;
   padding: 5px;
   overflow: auto;
 }
 .confirm-box  .ordered-products li {
   width: 100%;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -435,28 +472,6 @@ ul li .ctrl-btn:hover{
   height: 1px;
   background-color: var(--Rose-100);
   border-radius: 2px;
-}
-
-.confirm-box  .ordered-products li .startOf-productBox,
-.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-desc,
-.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-details{
-  display: flex;
-}
-.confirm-box  .ordered-products li .startOf-productBox,
-.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-details{
-  gap: 20px;
-}
-.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-details,
-.confirm-box  .ordered-products li .startOf-productBox .quantity,
-.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-name,
-.confirm-box .ordered-products li .confirmedProduct-fullPrice p,
-.confirm-box .orderTotal-box p:first-child{
-  font-weight: 600;
-}
-.confirm-box .ordered-products li .confirmedProduct-fullPrice p,
-.confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-name,
-.confirm-box .orderTotal-box p:last-child {
-  color: var(--Rose-900);
 }
 .confirm-box  .ordered-products li .startOf-productBox .confirmedProduct-desc{
   flex-direction: column;
@@ -473,12 +488,9 @@ ul li .ctrl-btn:hover{
   width: 50px;
 }
 .confirm-box .orderTotal-box{
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--Rose-50);
   padding: 20px;
-  margin-bottom: 30px;
   border-radius: 6px;
 }
 .confirm-box .orderTotal-box p:last-child{
@@ -488,4 +500,10 @@ ul li .ctrl-btn:hover{
 .confirm-box .orderTotal-box p:first-child{
   color: var(--Rose-500);
 }
+.confirm-box .ordered-products{
+  border-radius: 6px;
+  padding: 5px;
+  overflow: auto;
+}
+
 /* End Confirm Order Box  Styling*/

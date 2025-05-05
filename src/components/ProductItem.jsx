@@ -1,8 +1,13 @@
 import {useState } from "react";
 import Button from "./Button";
+import { useProducts } from "../hooks/useProducts";
+import { formatPrice } from "../utils/formatPrice";
 
-export default function ProductItem({productInfo,screenWidth,handleBuyProduct,handleQuantityIncreament,handleQuantityDecreament,handleRemoveProduct}) {
+export default function ProductItem({productInfo}) {
+    const { state, handleBuyProduct, handleQuantityIncreament, handleQuantityDecreament, handleRemoveProduct } = useProducts(); 
     const { image, name, category, price, id } = productInfo;
+    const { screenWidth } = state;
+    
     const [quantity, setQuantity] = useState(1);
     
     function handleGetMore() {
@@ -43,7 +48,7 @@ export default function ProductItem({productInfo,screenWidth,handleBuyProduct,ha
             <div className="product-Info">
                 <p>{category}</p>
                 <p>{name}</p>
-                <p>${Number.isInteger(price) ? `${price}.00` : `${price}0`}</p>
+                <p>${formatPrice(price)}</p>
             </div>
         </div>
     );
