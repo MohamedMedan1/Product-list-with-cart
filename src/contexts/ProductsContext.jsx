@@ -24,7 +24,7 @@ function reducer(state, action ) {
         case "setProductAsNotSelected":
             return { ...state,products:state.products.map((product) => product.id === action.payload ? {...product,isSelected:false}:product)};
         case "removePurchasedProduct":
-            return { ...state,purchasedProducts: state.purchasedProducts.filter((product) => product.id != action.payload)};
+            return { ...state,purchasedProducts: state.purchasedProducts.filter((product) => product.id !== action.payload)};
         case "loadingFinished":
             return { ...state,isLoading:false};
         case "increaseQuantity":
