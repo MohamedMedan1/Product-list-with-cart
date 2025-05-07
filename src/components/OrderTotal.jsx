@@ -1,10 +1,9 @@
 import { formatPrice } from "../utils/formatPrice";
-import { useProducts } from "../hooks/useProducts";
 import { calcFullPrice } from "../utils/calcFullPrice";
+import { usePurchased } from "../hooks/usePurchased";
 
 export default function OrderTotal() {
-    const { state } = useProducts();
-    const { purchasedProducts:savedProducts} = state;
+    const { purchasedProducts:savedProducts } = usePurchased();
     const sumOfCart = calcFullPrice(savedProducts);
     
     return (

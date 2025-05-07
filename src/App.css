@@ -29,7 +29,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--dark-Red);
 }
-.confirmedState::after{
+.overflow-hidden::after{
   content: '';
   position: fixed;
   left: 0;

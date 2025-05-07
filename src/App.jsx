@@ -6,13 +6,13 @@ import { useProducts } from './hooks/useProducts'
 
 function App() {
   const {state} = useProducts();
-  const {isConfirming} = state;
-  
+  const { isConfirming } = state;
+
   return (
       <div className='full-page'>
-        <ProductsGallery />
+        <ProductsGallery/>
         <Cart/>
-        {isConfirming && <ConfirmOrder/> }
+      {isConfirming && <ConfirmOrder/> }
       </div>
   )
 }

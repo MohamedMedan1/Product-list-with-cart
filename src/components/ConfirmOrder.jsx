@@ -2,12 +2,10 @@ import CartProductItem from "./CartProductItem";
 import OrderTotal from "./OrderTotal";
 import Button from "./Button"
 import { formatPrice } from "../utils/formatPrice";
-import { useProducts } from "../hooks/useProducts";
+import { usePurchased } from "../hooks/usePurchased";
 
 export default function ConfirmOrder() {
-    const { state, handleStartNewOrder } = useProducts();
-    const { purchasedProducts } = state;
-
+    const { purchasedProducts, handleConfirmOrder } = usePurchased();
     return (
         <div className="confirm-box">
             <div className="confirm-icon">
@@ -43,8 +41,8 @@ export default function ConfirmOrder() {
                     </CartProductItem>
                 </li>)}
             </ul>
-            <OrderTotal/>
-            <Button className="confirm-Btn" onClickHandler={handleStartNewOrder}>
+            <OrderTotal purchasedProducts = {purchasedProducts}/>
+            <Button className="confirm-Btn" onClickHandler={handleConfirmOrder}>
                 <p>Start new order</p>
             </Button>
         </div>

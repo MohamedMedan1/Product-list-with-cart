@@ -1,10 +1,9 @@
 import CartProductItem from "./CartProductItem"
 import { formatPrice } from "../utils/formatPrice"
-import { useProducts } from "../hooks/useProducts"
+import { usePurchased } from "../hooks/usePurchased"
 
 export default function CartProducts() {
-    const {state, handleRemoveProduct } = useProducts();
-    const { purchasedProducts: savedProducts } = state;
+    const { purchasedProducts: savedProducts, handleRemoveProduct } = usePurchased();
     
     return (
         <ul className="cart-products-box">
